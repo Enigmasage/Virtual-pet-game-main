@@ -19,16 +19,20 @@ void setColor(int color) {
 void getHiddenPassword(string &password) {
     char ch;
     password = "";
-    while ((ch = _getch()8) {
+
+    while ((ch = _getch()) != '\r') {   // stop when Enter is pressed
+        if (ch == '\b') {               // backspace pressed
             if (!password.empty()) {
                 password = password.substr(0, password.size() - 1);
-                cout << "\b \b";
+                cout << "\b \b";        // erase * from screen
             }
-        } else {
-            password += ch;
-            cout << '*';
+        } 
+        else {                          // normal character typed
+            password += ch;             // store character
+            cout << '*';                // show * instead of character
         }
     }
+
     cout << endl;
 }
 
